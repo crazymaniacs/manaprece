@@ -1,0 +1,27 @@
+{
+  "name": "manaprece",
+  "version": "1.0.0",
+  "description": "Cool goods search engine\r It is very usefull project",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crazymaniacs/manaprece.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/crazymaniacs/manaprece/issues"
+  },
+  "homepage": "https://github.com/crazymaniacs/manaprece#readme",
+  "dependencies": {
+    "jest": "^21.2.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "webpack": "^3.10.0"
+  },
+  "scripts": {
+	"test": "jest"
+  }
+}
