@@ -1,3 +1,3 @@
 it("should pass", () =>{
-	expect(5 + 7).toBe(10)
+	expect(5 + 5).toBe(10)
 })
