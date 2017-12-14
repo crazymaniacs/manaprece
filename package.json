@@ -27,19 +27,12 @@
     "build": "webpack -d && webpack-dev-server --hot --inline",
     "test": "jest"
   },
-  "jest": {
-    "transform": {
-      ".js$": "babel-7-jest"
-    }
-  },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.34",
     "@babel/plugin-transform-runtime": "^7.0.0-beta.34",
     "@babel/preset-env": "^7.0.0-beta.34",
     "@babel/preset-react": "^7.0.0-beta.34",
     "@babel/preset-stage-2": "^7.0.0-beta.34",
-    "babel-7-jest": "^21.3.2",
-    "babel-core": "^6.26.0",
     "babel-loader": "8.0.0-beta.0",
     "html-loader": "^0.5.1",
     "html-webpack-plugin": "^2.30.1",
