@@ -23,7 +23,7 @@
     "webpack": "^3.10.0"
   },
   "scripts": {
-	"start": "node index.js",
+    "start": "node index.js",
     "test": "jest"
   }
 }
