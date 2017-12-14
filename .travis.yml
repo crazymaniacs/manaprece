@@ -1,4 +1,10 @@
 language: node_js
 node_js:
- - "stable"
+- stable
 script: npm test
+deploy:
+  provider: heroku
+  api_key:
+    secure: eOfJMSQJvRRcXurfw4e2IiSZDGYz0YP+2FEcXjk5f06ZlKY9/pkTZgGhLpXaBLnN48MxCdofMOwcMOK/mY/Ww+PNTjg/nLUXBBosJlB4R4By80RTjGsRqlh8AxzsdjLPiZjp1YNq9gNEf4lVQre4+l3TbAARYjYVgL5iB01Ay9HI6KB4tj43lkC9to7m1xS4Al85BXTQrY4b0QKPPTLWWA59JPnMbTkaJOZyG0yHewEXxZ6fvirZ9N9v79gerKePA2OHF7gZV6lKXRUAgPEZ2zsHM6IVavqE53hdBqEGqOaaN4lvlK9/NATAX8/AQ8U2E91fDrGSD9I9FM2EO5IXztg1q0YHMCmnlrOuhlsnZ6IvDgxiZ53rnyz6fYkVuFJcuBGl6vu0+KMgr0u5ZEbpzojGcwOd5KuBTBO+WxEYoxs78jtogZa10Lfe2XlLp7y9hMlOrWMJy/5EJ+EFiLnWGyx3XbkgVfm1VasdP2ylGJZ+6oR6HuhO2EuxmmruFlUOTYhpmv2iXOVM4Xcw8DNCO1thYfJphB2Goc/mw3n++c6+51RuTZfzEvx+ijXkC2RkMr4rPs9yr1ifl+9cUtkTYVLK6DWwDEMJvU+A2OH75NPYul9J9JP8xKWPd1+Y8726VYlHcUxp9tv/EvOtYzpo9IMYBqGtbSelbZj8KqjXwSE=
+  app:
+    master: manaprece
