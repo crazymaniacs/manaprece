@@ -1,48 +1,51 @@
 {
-  "name": "manaprece",
-  "version": "1.0.0",
-  "description": "Cool goods search engine\r It is very usefull project",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/crazymaniacs/manaprece.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/crazymaniacs/manaprece/issues"
-  },
-  "homepage": "https://github.com/crazymaniacs/manaprece#readme",
-  "dependencies": {
-    "express": "^4.16.2",
-    "jest": "^21.2.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-redux": "^5.0.6",
-    "redux": "^3.7.2",
-    "webpack": "^3.10.0"
-  },
-  "scripts": {
-    "start": "node index.js",
-    "build": "webpack -d && webpack-dev-server --hot --inline",
-    "test": "jest"
-  },
-  "jest": {
-    "transform": {
-      ".js$": "babel-7-jest"
-    }
-  },
-  "devDependencies": {
-    "@babel/core": "^7.0.0-beta.34",
-    "@babel/plugin-transform-runtime": "^7.0.0-beta.34",
-    "@babel/preset-env": "^7.0.0-beta.34",
-    "@babel/preset-react": "^7.0.0-beta.34",
-    "@babel/preset-stage-2": "^7.0.0-beta.34",
-    "babel-7-jest": "^21.3.2",
-    "babel-loader": "8.0.0-beta.0",
-    "html-loader": "^0.5.1",
-    "html-webpack-plugin": "^2.30.1",
-    "prettier": "1.9.2",
-    "webpack-dev-server": "^2.9.7"
-  }
+	"name": "manaprece",
+	"version": "1.0.0",
+	"description": "Cool goods search engine\r It is very usefull project",
+	"main": "index.js",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/crazymaniacs/manaprece.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/crazymaniacs/manaprece/issues"
+	},
+	"homepage": "https://github.com/crazymaniacs/manaprece#readme",
+	"dependencies": {
+		"react": "^16.2.0",
+		"react-dom": "^16.2.0",
+		"react-redux": "^5.0.6",
+		"redux": "^3.7.2"
+	},
+	"scripts": {
+		"start": "node index.js",
+		"build": "webpack -d && webpack-dev-server --hot --inline",
+		"test": "jest"
+	},
+	"jest": {
+		"transform": {
+			".js$": "babel-7-jest"
+		}
+	},
+	"devDependencies": {
+		"webpack": "^3.10.0",
+		"express": "^4.16.2",
+		"jest": "^21.2.1",
+		"@babel/core": "^7.0.0-beta.34",
+		"@babel/plugin-transform-runtime": "^7.0.0-beta.34",
+		"@babel/preset-env": "^7.0.0-beta.34",
+		"@babel/preset-react": "^7.0.0-beta.34",
+		"@babel/preset-stage-2": "^7.0.0-beta.34",
+		"babel-7-jest": "^21.3.2",
+		"babel-loader": "8.0.0-beta.0",
+		"babel-preset-react": "^6.24.1",
+		"html-loader": "^0.5.1",
+		"html-webpack-plugin": "^2.30.1",
+		"node-sass": "^4.7.2",
+		"prettier": "1.9.2",
+		"sass-loader": "^6.0.6",
+		"webpack-dev-server": "^2.9.7"
+	}
 }
