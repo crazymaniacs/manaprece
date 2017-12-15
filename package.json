@@ -14,7 +14,8 @@
 	},
 	"homepage": "https://github.com/crazymaniacs/manaprece#readme",
 	"scripts": {
-		"start": "webpack -p && node index.js",
+		"start": "node index.js",
+		"build": "cross-env NODE_ENV=production webpack --color -p --progress --hide-modules --display-optimization-bailout",
 		"start:dev": "webpack -d && webpack-dev-server --hot --inline",
 		"test": "jest"
 	},
@@ -42,6 +43,7 @@
 		"babel-loader": "8.0.0-beta.0",
 		"babel-preset-react": "^6.24.1",
 		"clean-webpack-plugin": "^0.1.17",
+		"cross-env": "^5.1.1",
 		"css-loader": "^0.28.7",
 		"express": "^4.16.2",
 		"extract-text-webpack-plugin": "^3.0.2",
