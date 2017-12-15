@@ -14,7 +14,7 @@
 	},
 	"homepage": "https://github.com/crazymaniacs/manaprece#readme",
 	"scripts": {
-		"start": "webpack -p --progress && node index.js",
+		"start": "webpack -p && node index.js",
 		"start:dev": "webpack -d && webpack-dev-server --hot --inline",
 		"test": "jest"
 	},
