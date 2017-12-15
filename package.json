@@ -13,21 +13,24 @@
 		"url": "https://github.com/crazymaniacs/manaprece/issues"
 	},
 	"homepage": "https://github.com/crazymaniacs/manaprece#readme",
-	"dependencies": {
-		"react": "^16.2.0",
-		"react-dom": "^16.2.0",
-		"react-redux": "^5.0.6",
-		"redux": "^3.7.2"
-	},
 	"scripts": {
-		"start": "node index.js",
-		"build": "webpack -d && webpack-dev-server --hot --inline",
+		"start": "./node_modules/webpack/bin/webpack.js -p --progress && node index.js",
+		"start:dev": "webpack -d && webpack-dev-server --hot --inline",
 		"test": "jest"
 	},
 	"jest": {
 		"transform": {
 			".js$": "babel-7-jest"
 		}
+	},
+	"dependencies": {
+		"react": "^16.2.0",
+		"react-dom": "^16.2.0",
+		"react-redux": "^5.0.6",
+		"redux": "^3.7.2"
+	},
+	"engines": {
+		"node": "9.3.0"
 	},
 	"devDependencies": {
 		"webpack": "^3.10.0",
