@@ -16,6 +16,7 @@
 	"scripts": {
 		"start": "node index.js",
 		"postinstall": "webpack --color -p --progress --hide-modules --display-optimization-bailout",
+		"heroku-prebuild": "npm install --dev",
 		"build": "cross-env NODE_ENV=production webpack --color -p --progress --hide-modules --display-optimization-bailout",
 		"start:dev": "webpack -d && webpack-dev-server --hot --inline",
 		"test": "jest"
