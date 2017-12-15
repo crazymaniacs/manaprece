@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import Header from './components/Header'
+import Header from './components/Header';
+import './main.scss';
 
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="app-container">
         <Header/>
          <h2>
            This is a body

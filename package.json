@@ -14,7 +14,7 @@
 	},
 	"homepage": "https://github.com/crazymaniacs/manaprece#readme",
 	"scripts": {
-		"start": "./node_modules/webpack/bin/webpack.js -p --progress && node index.js",
+		"start": "webpack -p --progress && node index.js",
 		"start:dev": "webpack -d && webpack-dev-server --hot --inline",
 		"test": "jest"
 	},
@@ -33,9 +33,6 @@
 		"node": "9.3.0"
 	},
 	"devDependencies": {
-		"webpack": "^3.10.0",
-		"express": "^4.16.2",
-		"jest": "^21.2.1",
 		"@babel/core": "^7.0.0-beta.34",
 		"@babel/plugin-transform-runtime": "^7.0.0-beta.34",
 		"@babel/preset-env": "^7.0.0-beta.34",
@@ -44,11 +41,18 @@
 		"babel-7-jest": "^21.3.2",
 		"babel-loader": "8.0.0-beta.0",
 		"babel-preset-react": "^6.24.1",
+		"clean-webpack-plugin": "^0.1.17",
+		"css-loader": "^0.28.7",
+		"express": "^4.16.2",
+		"extract-text-webpack-plugin": "^3.0.2",
+		"file-loader": "^1.1.5",
 		"html-loader": "^0.5.1",
 		"html-webpack-plugin": "^2.30.1",
+		"jest": "^21.2.1",
 		"node-sass": "^4.7.2",
 		"prettier": "1.9.2",
 		"sass-loader": "^6.0.6",
+		"webpack": "^3.10.0",
 		"webpack-dev-server": "^2.9.7"
 	}
 }
