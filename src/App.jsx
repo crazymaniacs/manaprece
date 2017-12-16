@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Header from './components/Header';
+import Header from './components/header/Header';
 import './main.scss';
+import SvgImage from './images/SvgImage.svg'
 
 class App extends Component {
   render() {
@@ -10,6 +11,7 @@ class App extends Component {
          <h2>
            This is a body
          </h2>
+         <img style={{width:"100%"}} src={SvgImage}/>
       </div>
     );
   }

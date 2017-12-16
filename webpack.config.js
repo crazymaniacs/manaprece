@@ -1,14 +1,14 @@
 var webpack = require("webpack");
 var path = require("path");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
-var CleanWebpackPlugin = require('clean-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var CleanWebpackPlugin = require("clean-webpack-plugin");
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var SRC_DIR = path.resolve(__dirname, "src");
 var DIST_DIR = path.resolve(__dirname, "dist");
 
 var extractTextPlugin = new ExtractTextPlugin({
-  filename: 'main.css'
+	filename: "main.css"
 });
 
 module.exports = {
@@ -17,7 +17,7 @@ module.exports = {
 		path: DIST_DIR,
 		filename: "bundle.js"
 	},
-	devtool: 'cheap-module-eval-source-map',
+	devtool: "cheap-module-eval-source-map",
 	module: {
 		loaders: [
 			// JS files
@@ -31,18 +31,34 @@ module.exports = {
 				test: /\.html$/,
 				loader: "html-loader"
 			},
-      // Style files
-      {
-        test: /\.scss$/,
-        use: extractTextPlugin.extract({
-          use: ['css-loader', 'sass-loader']
-        })
-      },
-      {
-        test: /\.css$/,
-        include: /node_modules/,
-        loaders: ['style-loader', 'css-loader'],
-      }
+			// Style files
+			{
+				test: /\.scss$/,
+				use: extractTextPlugin.extract({
+					use: ["css-loader", "sass-loader"]
+				})
+			},
+			{
+				test: /\.css$/,
+				include: /node_modules/,
+				loaders: ["style-loader", "css-loader"]
+			},
+			// Images
+			{
+				test: /\.(png|jpg|gif)$/,
+				use: [
+					{
+						loader: "url-loader",
+						options: {
+							limit: 10000
+						}
+					}
+				]
+			},
+			{
+				test: /\.svg$/,
+				use: "file-loader"
+			}
 		]
 	},
 	resolve: {

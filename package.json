@@ -15,9 +15,11 @@
 	"homepage": "https://github.com/crazymaniacs/manaprece#readme",
 	"scripts": {
 		"start": "node index.js",
-		"postinstall": "webpack --color -p --progress --hide-modules --display-optimization-bailout",
+		"postinstall":
+			"webpack --color -p --progress --hide-modules --display-optimization-bailout",
 		"heroku-prebuild": "npm install --dev",
-		"build": "cross-env NODE_ENV=production webpack --color -p --progress --hide-modules --display-optimization-bailout",
+		"build":
+			"cross-env NODE_ENV=production webpack --color -p --progress --hide-modules --display-optimization-bailout",
 		"start:dev": "webpack -d && webpack-dev-server --hot --inline",
 		"test": "jest --no-cache",
 		"lint": "./node_modules/.bin/eslint --ignore-path .gitignore ."
@@ -64,6 +66,7 @@
 		"raf": "^3.4.0",
 		"react-test-renderer": "^16.2.0",
 		"sass-loader": "^6.0.6",
+		"url-loader": "^0.6.2",
 		"webpack": "^3.10.0",
 		"webpack-dev-server": "^2.9.7"
 	},
@@ -71,18 +74,9 @@
 		"globals": {
 			"NODE_ENV": "test"
 		},
-		"moduleFileExtensions": [
-			"js",
-			"jsx",
-			"json"
-		],
-		"setupFiles": [
-			"raf/polyfill"
-		],
-		"moduleDirectories": [
-			"node_modules",
-			"src"
-		],
+		"moduleFileExtensions": ["js", "jsx", "json"],
+		"setupFiles": ["raf/polyfill"],
+		"moduleDirectories": ["node_modules", "src"],
 		"moduleNameMapper": {
 			"^.+\\.(css|scss|less)$": "jest-css-modules"
 		}
