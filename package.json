@@ -15,9 +15,7 @@
   "homepage": "https://github.com/crazymaniacs/manaprece#readme",
   "scripts": {
     "start": "node ./server/index.js",
-    "postinstall":
-      "webpack --color -p --progress --hide-modules --display-optimization-bailout",
-    "heroku-prebuild": "npm install --dev",
+    "heroku-prebuild": "npm install --only=dev && npm run build",
     "build":
       "cross-env NODE_ENV=production webpack --color -p --progress --hide-modules --display-optimization-bailout",
     "start:dev": "webpack -d && webpack-dev-server --hot --inline",
