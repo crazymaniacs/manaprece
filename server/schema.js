@@ -25,7 +25,7 @@ const ProductType = new GraphQLObjectType({
     },
     category: {
       type: CategoryType,
-      resolve: (root, args) => FakeDB.category[root.categoryId],
+      resolve: (root) => FakeDB.category[root.categoryId],
     },
   }),
 });
@@ -52,7 +52,7 @@ const CategoryType = new GraphQLObjectType({
       resolve: (root, args) =>
         Object.keys(FakeDB.product)
           .map((prodId) =>
-            FakeDB.product[prodId].categoryId == root.id &&
+            FakeDB.product[prodId].categoryId === root.id &&
               FakeDB.product[prodId])
           .filter((x) => !!x)
           .slice(0, args.size),
