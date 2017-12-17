@@ -1,5 +1,5 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import { shallow } from 'enzyme';
 import CheckboxWithLabel from './CheckboxWithLabel';
 
 test('CheckboxWithLabel changes the text after click', () => {

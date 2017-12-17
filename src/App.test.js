@@ -6,7 +6,6 @@ it('renders without crashing');
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  const b = 10;
   ReactDOM.render(<App />, div);
 });
 
