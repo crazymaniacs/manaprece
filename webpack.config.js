@@ -6,15 +6,13 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const SRC_DIR = path.resolve(__dirname, 'src');
 const DIST_DIR = path.resolve(__dirname, 'build', 'public');
 
-const extractTextPlugin = new ExtractTextPlugin({
-  filename: 'main.css',
-});
+const extractTextPlugin = new ExtractTextPlugin({filename: 'main.css'});
 
 module.exports = {
   entry: path.resolve(SRC_DIR, 'index.js'),
   output: {
     path: DIST_DIR,
-    filename: 'bundle.js',
+    filename: 'bundle.js'
   },
   devtool: 'cheap-module-eval-source-map',
   module: {
@@ -23,24 +21,23 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         include: SRC_DIR,
-        loader: 'babel-loader',
+        loader: 'babel-loader'
       },
       // HTML files
       {
         test: /\.html$/,
-        loader: 'html-loader',
+        loader: 'html-loader'
       },
       // Style files
       {
         test: /\.scss$/,
         use: extractTextPlugin.extract({
-          use: ['css-loader', 'sass-loader'],
-        }),
-      },
-      {
+          use: ['css-loader', 'sass-loader']
+        })
+      }, {
         test: /\.css$/,
         include: /node_modules/,
-        loaders: ['style-loader', 'css-loader'],
+        loaders: ['style-loader', 'css-loader']
       },
       // Images
       {
@@ -49,25 +46,24 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              limit: 10000,
-            },
-          },
-        ],
-      },
-      {
+              limit: 10000
+            }
+          }
+        ]
+      }, {
         test: /\.svg$/,
-        use: 'file-loader',
-      },
-    ],
+        use: 'file-loader'
+      }
+    ]
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx']
   },
   plugins: [
     extractTextPlugin,
     new HtmlWebpackPlugin({
-      template: path.resolve(SRC_DIR, 'index.html'),
+      template: path.resolve(SRC_DIR, 'index.html')
     }),
-    new CleanWebpackPlugin([DIST_DIR]),
-  ],
+    new CleanWebpackPlugin([DIST_DIR])
+  ]
 };

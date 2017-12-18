@@ -15,14 +15,12 @@
   "homepage": "https://github.com/crazymaniacs/manaprece#readme",
   "scripts": {
     "build:server": "./node_modules/.bin/babel ./app/server -d build",
-    "build:watch:server":
-      "./node_modules/.bin/babel ./app/server -d build --watch",
-    "build:client":
-      "cross-env NODE_ENV=production webpack --color -p --progress --hide-modules --display-optimization-bailout",
-    "build:watch:client": "webpack -d && webpack-dev-server --hot --inline",
+    "build:watch:server": "./node_modules/.bin/babel ./app/server -d build --watch",
+    "build:client": "cross-env NODE_ENV=production webpack --color -p --progress --hide-modules --display-optimization-bailout",
+    "build:watch:client": "webpack-dev-server --hot --inline",
     "build": "npm run build:server && npm run build:client",
-    "start:dev":
-      "parallelshell \"npm run build:watch:server\" \"nodemon ./build/index.js\" \"npm run build:watch:client\"",
+    "watch": "nodemon ./build/index.js",
+    "start:dev": "parallelshell \"npm run build:watch:server\" \"npm run build:watch:client\" \"npm run watch\"",
     "start": "node ./build/index.js"
   },
   "dependencies": {
@@ -81,12 +79,21 @@
     "globals": {
       "NODE_ENV": "test"
     },
-    "moduleFileExtensions": ["js", "jsx", "json"],
-    "setupFiles": ["raf/polyfill", "enzyme-react-16-adapter-setup"],
-    "moduleDirectories": ["node_modules", "src"],
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json"
+    ],
+    "setupFiles": [
+      "raf/polyfill",
+      "enzyme-react-16-adapter-setup"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
     "moduleNameMapper": {
-      "\\.(pdf|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
-        "<rootDir>/__mocks__/fileMock.js",
+      "\\.(pdf|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "^.+\\.(css|scss|less)$": "jest-css-modules"
     }
   }
