@@ -10,7 +10,7 @@ lib-cov
 pids
 logs
 results
-dist
+build
 .vscode
 
 node_modules
