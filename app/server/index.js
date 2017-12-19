@@ -3,11 +3,12 @@ import express from 'express';
 import webpack from 'webpack';
 import graphqlHTTP from 'express-graphql';
 import schema from './schema';
+import middleware from './middleware';
 
 const app = express();
 
 if (process.env.NODE_ENV === 'development') {
-  const SRC_DIR = path.resolve(__dirname, 'src');
+  const SRC_DIR = path.resolve(__dirname, 'app', 'client');
   const config = require('../../webpack.config.dev');
   const compiler = webpack(config);
   app.use(require('webpack-dev-middleware')(compiler, {
@@ -29,6 +30,7 @@ if (process.env.NODE_ENV === 'development') {
   app.use(express.static(SRC_DIR));
 }
 
+app.get('*', middleware);
 app.use('/graphql', graphqlHTTP({ schema, graphiql: true }));
 app.set('port', process.env.PORT || 8080);
 

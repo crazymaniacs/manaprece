@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const SRC_DIR = path.resolve(__dirname, 'src');
+const SRC_DIR = path.resolve(__dirname, 'app', 'client');
 
 module.exports = {
   entry: ['webpack-hot-middleware/client', SRC_DIR],
@@ -67,9 +67,9 @@ module.exports = {
         NODE_ENV: JSON.stringify('development'),
         WEBPACK: true
       }
-    }),
+    }) /* ,
     new HtmlWebpackPlugin({
       template: path.resolve(SRC_DIR, 'index.html')
-    })
+    }) */
   ]
 };
