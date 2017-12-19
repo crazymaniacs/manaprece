@@ -14,13 +14,8 @@
   },
   "homepage": "https://github.com/crazymaniacs/manaprece#readme",
   "scripts": {
-    "build:server": "./node_modules/.bin/babel ./app/server -d build",
-    "build:watch:server": "./node_modules/.bin/babel ./app/server -d build --watch",
-    "build:client": "cross-env NODE_ENV=production webpack --color -p --progress --hide-modules --display-optimization-bailout",
-    "build:watch:client": "webpack-dev-server --hot --inline",
-    "build": "npm run build:server && npm run build:client",
-    "watch": "nodemon ./build/index.js",
-    "start:dev": "parallelshell \"npm run build:watch:server\" \"npm run build:watch:client\" \"npm run watch\"",
+    "start:dev":
+      "cross-env NODE_ENV=development babel-node ./app/server/index.js",
     "start": "node ./build/index.js"
   },
   "dependencies": {
@@ -41,6 +36,7 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-react-hmre": "^1.1.1",
     "clean-webpack-plugin": "^0.1.17",
     "cross-env": "^5.1.1",
     "css-loader": "^0.28.7",
@@ -71,29 +67,23 @@
     "raf": "^3.4.0",
     "react-test-renderer": "^16.2.0",
     "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.1",
     "url-loader": "^0.6.2",
     "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.9.7"
+    "webpack-dev-middleware": "^2.0.2",
+    "webpack-dev-server": "^2.9.7",
+    "webpack-hot-middleware": "^2.21.0"
   },
   "jest": {
     "globals": {
       "NODE_ENV": "test"
     },
-    "moduleFileExtensions": [
-      "js",
-      "jsx",
-      "json"
-    ],
-    "setupFiles": [
-      "raf/polyfill",
-      "enzyme-react-16-adapter-setup"
-    ],
-    "moduleDirectories": [
-      "node_modules",
-      "src"
-    ],
+    "moduleFileExtensions": ["js", "jsx", "json"],
+    "setupFiles": ["raf/polyfill", "enzyme-react-16-adapter-setup"],
+    "moduleDirectories": ["node_modules", "src"],
     "moduleNameMapper": {
-      "\\.(pdf|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(pdf|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+        "<rootDir>/__mocks__/fileMock.js",
       "^.+\\.(css|scss|less)$": "jest-css-modules"
     }
   }

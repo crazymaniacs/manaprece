@@ -7,7 +7,7 @@ export class Header extends Component {
     return (
       <div className="header">
         <img src={Ball} />
-        <h1>This is a Header2</h1>
+        <h1>This is a Header</h1>
       </div>
     );
   }
