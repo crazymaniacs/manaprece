@@ -1,5 +1,6 @@
 export default (req, res) => {
-  res.send(`
+  if (process.env.NODE_ENV === 'development') {
+    res.send(`
 			<!doctype html>
 			<html>
 				<head>
@@ -11,4 +12,19 @@ export default (req, res) => {
 				</body>
 			</html>
 		`);
+  } else if (process.env.NODE_ENV === 'production') {
+    res.send(`
+			<!doctype html>
+			<html>
+				<head>
+					<title>My Universal App</title>
+					<link rel='stylesheet' href='bundle.css'>
+				</head>
+        <body>
+					<div id="root"></div>
+					<script src='bundle.js'></script>
+				</body>
+			</html>
+		`);
+  }
 };

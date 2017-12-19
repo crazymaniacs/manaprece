@@ -1,26 +1,27 @@
 const path = require('path');
 const webpack = require('webpack');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const SRC_DIR = path.resolve(__dirname, 'app');
+const DIST_DIR = path.resolve(__dirname, 'build', 'public');
+
+const extractTextPlugin = new ExtractTextPlugin('bundle.css');
 
 module.exports = {
-  entry: ['webpack-hot-middleware/client', SRC_DIR],
+  entry: path.resolve(SRC_DIR, 'index.js'),
   output: {
-    path: SRC_DIR,
+    path: DIST_DIR,
     filename: 'bundle.js',
     publicPath: '/'
   },
-  devtool: 'cheap-module-eval-source-map',
   module: {
     loaders: [
       // JS files
       {
         test: /\.(js|jsx)$/,
         include: SRC_DIR,
-        loader: 'babel-loader',
-        query: {
-          presets: ['react-hmre']
-        }
+        loader: 'babel-loader'
       },
       // HTML files
       {
@@ -30,7 +31,9 @@ module.exports = {
       // Style files
       {
         test: /\.scss$/,
-        use: ['style-loader', 'css-loader?sourceMap', 'sass-loader?sourceMap']
+        use: extractTextPlugin.extract({
+          use: ['css-loader', 'sass-loader']
+        })
       },
       {
         test: /\.css$/,
@@ -59,13 +62,13 @@ module.exports = {
     extensions: ['.js', '.jsx']
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('development'),
+        NODE_ENV: JSON.stringify('production'),
         WEBPACK: true
       }
-    })
+    }),
+    extractTextPlugin,
+    new CleanWebpackPlugin([DIST_DIR])
   ]
 };

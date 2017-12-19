@@ -8,7 +8,7 @@ class App extends Component {
     return (
       <div className="app-container">
         <Header />
-        <h2>This is a body </h2>
+        <h2>This is a body test</h2>
         <img style={{ width: '100%' }} src={SvgImage} />
       </div>
     );

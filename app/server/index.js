@@ -8,7 +8,7 @@ import middleware from './middleware';
 const app = express();
 
 if (process.env.NODE_ENV === 'development') {
-  const SRC_DIR = path.resolve(__dirname, 'app', 'client');
+  const SRC_DIR = path.resolve(__dirname, 'app');
   const config = require('../../webpack.config.dev');
   const compiler = webpack(config);
   app.use(require('webpack-dev-middleware')(compiler, {
@@ -28,6 +28,8 @@ if (process.env.NODE_ENV === 'development') {
   }));
   app.use(require('webpack-hot-middleware')(compiler));
   app.use(express.static(SRC_DIR));
+} else if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.resolve(__dirname, 'public')));
 }
 
 app.get('*', middleware);
