@@ -5,6 +5,18 @@ import graphqlHTTP from 'express-graphql';
 import schema from './schema';
 import middleware from './middleware';
 
+delete process.env.BROWSER;
+
+require('babel-register')({
+  // Ignore can also be specified as a function.
+  ignore(filename) {
+    console.log(filename);
+    return true;
+  },
+  extensions: ['.png'],
+  cache: true
+});
+
 const app = express();
 
 if (process.env.NODE_ENV === 'development') {

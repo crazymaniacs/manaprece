@@ -1,11 +1,26 @@
-import React from 'react';
-import { Route } from 'react-router';
 import App from './App';
 import About from './About';
+import Home from './Home';
 
-export default () => (
-  <div>
-    <Route exact name="index" path="/" component={App} />
-    <Route path="/about" component={About} />
-  </div>
-);
+const routes = [
+  {
+    component: App,
+    routes: [
+      {
+        path: '/',
+        exact: true,
+        component: Home
+      },
+      {
+        path: '/home',
+        component: Home
+      },
+      {
+        path: '/about',
+        component: About
+      }
+    ]
+  }
+];
+
+export default routes;

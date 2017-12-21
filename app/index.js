@@ -5,22 +5,21 @@ import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { Route } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
+import { renderRoutes } from 'react-router-config';
 import reducers from './shared/reducers';
-import App from './shared/App';
-import About from './shared/About';
 import routes from './shared/routes';
 
 const history = createBrowserHistory();
-const store = createStore(reducers, applyMiddleware(routerMiddleware(history)));
+const store = createStore(
+  reducers,
+  window.__INITIAL_STATE__,
+  applyMiddleware(routerMiddleware(history))
+);
 
 render(
   <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <div>
-        <Route exact name="index" path="/" component={App} />
-        <Route path="/about" component={About} />
-      </div>
-    </ConnectedRouter>
+    <BrowserRouter>{renderRoutes(routes)}</BrowserRouter>
   </Provider>,
   document.getElementById('root')
 );
