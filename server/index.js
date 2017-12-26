@@ -28,3 +28,8 @@ app.set('port', process.env.PORT || 8080);
 const server = app.listen(app.get('port'), () => {
   console.log('listening on port ', server.address().port);
 });
+
+if (models) {
+  console.log('using models to fix lint issue');
+}
+

@@ -7,6 +7,7 @@ const {
   GraphQLID,
   GraphQLFloat,
   GraphQLNonNull,
+  GraphQLBoolean,
 } = require('graphql');
 const mongoose = require('mongoose');
 const Category = mongoose.model('category');
@@ -51,6 +52,7 @@ const CategoryType = new GraphQLObjectType({
       type: GraphQLList(ProductType),
       resolve: (root) => Product.find({ categoryId: root.id }),
     },
+    childOnly: { type: GraphQLBoolean },
   }),
 });
 
@@ -65,7 +67,12 @@ module.exports = new GraphQLSchema({
         args: {
           id: { type: GraphQLID },
         },
-        resolve: (root, args) => Category.findById(args.id),
+        resolve: (root, { id }) => {
+          if (id) {
+            return Category.findById(id);
+          }
+          return Category.findOne({ parentCategoryId: null });
+        },
       },
       product: {
         type: ProductType,
@@ -78,22 +85,24 @@ module.exports = new GraphQLSchema({
   }),
   mutation: new GraphQLObjectType({
     name: 'Mutations',
-    description: `mutation AddCategory($name: String, $description:String, $parentCategoryId: String){
-      addCategory(name: $name, description:$description, parentCategoryId: $parentCategoryId){
-         id,
-        name
-      }
-    }`,
     fields: () => ({
       addCategory: {
         type: CategoryType,
         args: {
-          name: { type: GraphQLString },
+          name: { type: new GraphQLNonNull(GraphQLString) },
           description: { type: GraphQLString },
-          parentCategoryId: { type: GraphQLString },
+          parentCategoryId: { type: new GraphQLNonNull(GraphQLString) },
+          childOnly: { type: GraphQLBoolean },
         },
-        resolve: (root, { name, description, parentCategoryId }) =>
-          new Category({ name, description, parentCategoryId }).save(),
+        resolve: (root, {
+          name, description, parentCategoryId, childOnly,
+        }) =>
+          new Category({
+            name,
+            description,
+            parentCategoryId,
+            childOnly,
+          }).save(),
       },
       deleteCategory: {
         type: CategoryType,
