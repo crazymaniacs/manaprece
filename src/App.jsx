@@ -1,18 +1,43 @@
-import React, { Component } from 'react';
+import React from 'react';
+import ApolloClient from 'apollo-client';
+import { HttpLink } from 'apollo-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { ApolloProvider } from 'react-apollo';
+import { BrowserRouter, Route } from 'react-router-dom';
 import Header from './components/header/Header';
 import './main.scss';
 import SvgImage from './images/svgimage.svg';
+import Category from './pages/category';
+import CategoryCreate from './pages/category_create';
+import ProductCreate from './pages/product_create';
 
-class App extends Component {
-  render() {
-    return (
+const client = new ApolloClient({
+  link: new HttpLink({}),
+  cache: new InMemoryCache(),
+});
+
+const App = () => (
+  <BrowserRouter>
+    <ApolloProvider client={client}>
       <div className="app-container">
         <Header />
-        <h2>This is a body</h2>
-        <img style={{ width: '100%' }} src={SvgImage} />
+        <img alt="bbb" style={{ width: '50px' }} src={SvgImage} />
+        <Route exact path="/" component={Category} />
+        <Route exact path="/category" component={Category} />
+        <Route exact path="/category/:id" component={Category} />
+        <Route
+          exact
+          path="/category/:id/create_category"
+          component={CategoryCreate}
+        />
+        <Route
+          exact
+          path="/category/:id/create_product"
+          component={ProductCreate}
+        />
       </div>
-    );
-  }
-}
+    </ApolloProvider>
+  </BrowserRouter>
+);
 
 export default App;

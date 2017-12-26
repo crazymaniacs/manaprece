@@ -16,16 +16,24 @@
   "scripts": {
     "start": "node ./server/index.js",
     "heroku-prebuild": "npm install --only=dev && npm run build",
-    "build":
-      "cross-env NODE_ENV=production webpack --color -p --progress --hide-modules --display-optimization-bailout",
-    "start:dev": "webpack -d && webpack-dev-server --hot --inline",
+    "build": "cross-env NODE_ENV=production webpack --color -p --progress --hide-modules --display-optimization-bailout",
+    "start:dev": "webpack-dev-server --hot --inline",
     "test": "jest --no-cache",
     "lint": "./node_modules/.bin/eslint --ignore-path .gitignore ."
   },
   "dependencies": {
+    "apollo-cache-inmemory": "^1.1.4",
+    "apollo-client": "^2.0.4",
+    "apollo-link-http": "^1.3.2",
+    "cors": "^2.8.4",
+    "graphql": "^0.12.3",
+    "graphql-tag": "^2.6.1",
+    "mongoose": "^4.13.7",
     "react": "^16.2.0",
+    "react-apollo": "^2.0.4",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
     "redux": "^3.7.2"
   },
   "engines": {
@@ -74,12 +82,21 @@
     "globals": {
       "NODE_ENV": "test"
     },
-    "moduleFileExtensions": ["js", "jsx", "json"],
-    "setupFiles": ["raf/polyfill", "enzyme-react-16-adapter-setup"],
-    "moduleDirectories": ["node_modules", "src"],
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json"
+    ],
+    "setupFiles": [
+      "raf/polyfill",
+      "enzyme-react-16-adapter-setup"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
     "moduleNameMapper": {
-      "\\.(pdf|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
-        "<rootDir>/__mocks__/fileMock.js",
+      "\\.(pdf|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "^.+\\.(css|scss|less)$": "jest-css-modules"
     }
   }
