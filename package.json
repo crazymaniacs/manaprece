@@ -15,7 +15,7 @@
   "homepage": "https://github.com/crazymaniacs/manaprece#readme",
   "scripts": {
     "start": "node ./server/index.js",
-    "heroku-prebuild": "npm install --only=dev && npm run build",
+    "heroku-prebuild": "npm install && npm run build",
     "build":
       "cross-env NODE_ENV=production webpack --color -p --progress --hide-modules --display-optimization-bailout",
     "start:dev": "webpack-dev-server --hot --inline",
@@ -25,7 +25,7 @@
   "dependencies": {
     "apollo-client-preset": "^1.0.5",
     "cors": "^2.8.4",
-    "graphql": "^0.11.7",
+    "graphql": "^0.12.3",
     "graphql-tag": "^2.6.1",
     "mongoose": "^4.13.7",
     "react": "^16.2.0",
