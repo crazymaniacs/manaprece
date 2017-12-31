@@ -5,7 +5,7 @@ export default (props) => {
   const { products } = props;
   const productListItems =
     products &&
-    products.map((prod) => <ProductListItem key={prod.id} category={prod} />);
+    products.map((prod) => <ProductListItem key={prod.id} product={prod} />);
   return (
     <div>
       <h3> Products in this Category </h3>
