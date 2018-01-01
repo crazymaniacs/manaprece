@@ -1,0 +1,21 @@
+{
+  "presets": [
+    "react", ["env", {
+      "modules": false
+    }]
+  ],
+
+  "plugins": [
+    "transform-object-rest-spread",
+    "transform-class-properties",
+    "transform-decorators-legacy",
+    "transform-react-display-name",
+    "react-hot-loader/babel"
+  ],
+  "env": {
+    "test": {
+      "presets": ["env", "react"],
+      "plugins": ["transform-class-properties"]
+    }
+  }
+}
