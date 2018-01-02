@@ -1,0 +1,11 @@
+{
+  "workbench.iconTheme": "vs-seti",
+  "files.eol": "\n",
+  "editor.tabSize": 2,
+  "react.beautify.formatter": "prettydiff",
+  "eslint.nodePath": "./node_modules",
+  "javascript.format.enable": false,
+  "editor.formatOnSave": true,
+  "prettier.eslintIntegration": true,
+  "csharp.suppressDotnetInstallWarning": true
+}

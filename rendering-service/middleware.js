@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
-import {renderToString} from 'react-dom/server';
-import {matchRoutes, renderRoutes} from 'react-router-config';
-import {createStore, applyMiddleware} from 'redux';
-import {Provider} from 'react-redux';
+import React, { Component } from 'react';
+import { renderToString } from 'react-dom/server';
+import { matchRoutes, renderRoutes } from 'react-router-config';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
 import StaticRouter from 'react-router-dom/StaticRouter';
-import {createMemoryHistory, createLocation} from 'history';
-import {ConnectedRouter} from 'react-router-redux';
+import { createMemoryHistory, createLocation } from 'history';
+import { ConnectedRouter } from 'react-router-redux';
 
 import routes from '../src/routes';
 import reducers from '../src/reducers';
@@ -24,32 +24,37 @@ export default function createSSR(assets) {
     const store = configureStore(history);
 
     const branch = matchRoutes(routes, req.url);
-    const promises = branch.map(({route}) => {
-      let fetchData = route.component.fetchData;
+    const promises = branch.map(({ route }) => {
+      const fetchData = route.component.fetchData;
       return fetchData instanceof Function
         ? fetchData(store)
-        : Promise.resolve(null)
+        : Promise.resolve(null);
     });
-    return Promise
-      .all(promises)
-      .then((data) => {
-        const context = {};
-        const component = (
-          <Provider store={store}>
-            <ConnectedRouter history={history} context={context}>
-              {renderRoutes(routes)}
-            </ConnectedRouter>
-          </Provider>
-        );
+    return Promise.all(promises).then((data) => {
+      const context = {};
+      const component = (
+        <Provider store={store}>
+          <ConnectedRouter history={history} context={context}>
+            {renderRoutes(routes)}
+          </ConnectedRouter>
+        </Provider>
+      );
 
-        const content = renderToString(<Html {...{assets, store, component, context}}/>);
-        if (context.status === 404) {
-          res.status(404);
-        }
-        if (context.status === 302) {
-          return res.redirect(302, context.url);
-        }
-        res.send(`<!doctype html>\n${content}`);
-      });
+      const content = renderToString(<Html
+        {...{
+          assets,
+          store,
+          component,
+          context
+        }}
+      />);
+      if (context.status === 404) {
+        res.status(404);
+      }
+      if (context.status === 302) {
+        return res.redirect(302, context.url);
+      }
+      res.send(`<!doctype html>\n${content}`);
+    });
   };
-};
+}

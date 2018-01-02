@@ -11,7 +11,7 @@ export default function (parameters) {
 
   app.use(favicon(path.join(__dirname, '..', '..', 'assets', 'favicon.ico')));
   app.get('*', createSSR(parameters.chunks()));
-  app.set('port', 3002); //  process.env.PORT
+  app.set('port', configuration.webserver.port); //  process.env.PORT
 
   const server = app.listen(app.get('port'), (error) => {
     if (error) {
