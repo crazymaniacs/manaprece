@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import Header from './components/header/Header';
+import { Link } from 'react-router-dom';
 import './main.scss';
 import SvgImage from './images/svgimage.svg';
-import { Link } from 'react-router-dom';
 
 const Home = () => (
   <div>

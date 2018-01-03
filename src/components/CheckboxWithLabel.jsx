@@ -10,9 +10,7 @@ export default class CheckboxWithLabel extends React.Component {
     // bind manually because React class components don't auto-bind
     // http://facebook.github.io/react/blog/2015/01/27/react-v0.13.0-beta-1.html#aut
     // o binding
-    this.onChange = this
-      .onChange
-      .bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
   onChange() {
@@ -24,9 +22,12 @@ export default class CheckboxWithLabel extends React.Component {
   render() {
     return (
       <label>
-        <input type="checkbox" checked={this.state.isChecked} onChange={this.onChange}/> {this.state.isChecked
-          ? this.props.labelOn
-          : this.props.labelOff}
+        <input
+          type="checkbox"
+          checked={this.state.isChecked}
+          onChange={this.onChange}
+        />{' '}
+        {this.state.isChecked ? this.props.labelOn : this.props.labelOff}
       </label>
     );
   }

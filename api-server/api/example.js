@@ -3,70 +3,56 @@
 // For debugging you can use "Advanced REST Client" for Google Chrome:
 // https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo
 
-import { errors } from 'web-service'
+import { errors } from 'web-service';
 
-const users = new Map()
-let id_counter = 0
+const users = new Map();
+let id_counter = 0;
 
-export default function(api)
-{
-	api.get('/example/users', async () =>
-	{
-		return Array.from(users.keys())
-	})
+export default function (api) {
+  api.get('/example/users', async () => Array.from(users.keys()));
 
-	api.get('/example/users/:id', async ({ id }) =>
-	{
-		if (!users.has(id))
-		{
-			throw new errors.Not_found(`User ${id} not found`)
-		}
-		
-		return { ...users.get(id), id: id }
-	})
+  api.get('/example/users/:id', async ({ id }) => {
+    if (!users.has(id)) {
+      throw new errors.Not_found(`User ${id} not found`);
+    }
 
-	api.post('/example/users', async ({ name }) =>
-	{
-		if (!name)
-		{
-			throw new errors.Input_rejected(`"name" is required`)
-		}
+    return { ...users.get(id), id };
+  });
 
-		id_counter++
-		const id = String(id_counter)
+  api.post('/example/users', async ({ name }) => {
+    if (!name) {
+      throw new errors.Input_rejected('"name" is required');
+    }
 
-		users.set(id, { name: name })
+    id_counter++;
+    const id = String(id_counter);
 
-		return id
-	})
+    users.set(id, { name });
 
-	api.patch('/example/users/:id', async ({ id, name }) =>
-	{
-		if (!users.has(id))
-		{
-			throw new errors.Not_found(`User ${id} not found`)
-		}
+    return id;
+  });
 
-		users.get(id).name = name
-	})
+  api.patch('/example/users/:id', async ({ id, name }) => {
+    if (!users.has(id)) {
+      throw new errors.Not_found(`User ${id} not found`);
+    }
 
-	api.delete('/example/users/:id', async ({ id }) =>
-	{
-		if (!users.has(id))
-		{
-			throw new errors.Not_found(`User ${id} not found`)
-		}
-		
-		users.delete(id)
-	})
+    users.get(id).name = name;
+  });
 
-	api.post('/example/users/:id/picture', async ({ id, file_name }) =>
-	{
-		if (!users.has(id))
-		{
-			throw new errors.Not_found(`User ${id} not found`)
-		}
+  api.delete('/example/users/:id', async ({ id }) => {
+    if (!users.has(id)) {
+      throw new errors.Not_found(`User ${id} not found`);
+    }
 
-		users.get(id).picture = file_name
-	})
+    users.delete(id);
+  });
+
+  api.post('/example/users/:id/picture', async ({ id, file_name }) => {
+    if (!users.has(id)) {
+      throw new errors.Not_found(`User ${id} not found`);
+    }
+
+    users.get(id).picture = file_name;
+  });
 }

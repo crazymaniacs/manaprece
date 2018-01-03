@@ -5,16 +5,22 @@
  * See https://github.com/gaearon/react-hot-loader/issues/298
  */
 if (module.hot) {
-  const isString = a => typeof a === 'string'
-  const consoleError = console.error // eslint-disable-line no-console
-  console.error = (...args) => { // eslint-disable-line no-console
-    if (args && args.length === 1 && isString(args[0]) && args[0].indexOf('You cannot change <Router routes>;') > -1) {
+  const isString = (a) => typeof a === 'string';
+  const consoleError = console.error; // eslint-disable-line no-console
+  console.error = (...args) => {
+    // eslint-disable-line no-console
+    if (
+      args &&
+      args.length === 1 &&
+      isString(args[0]) &&
+      args[0].indexOf('You cannot change <Router routes>;') > -1
+    ) {
       // React route changed
     } else {
       // Log the error as normally
-      consoleError.apply(console, args)
+      consoleError.apply(console, args);
     }
-  }
+  };
 }
 
-require('./index')
+require('./index');

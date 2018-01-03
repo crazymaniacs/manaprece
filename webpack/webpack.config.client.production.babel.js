@@ -1,31 +1,31 @@
-import path               from 'path'
-import webpack            from 'webpack'
-import CleanPlugin        from 'clean-webpack-plugin'
+import path from 'path';
+import webpack from 'webpack';
+import CleanPlugin from 'clean-webpack-plugin';
 // https://github.com/webpack/webpack-sources/issues/28
 // import MinifyPlugin       from 'babel-minify-webpack-plugin'
-import MinifyPlugin       from 'uglifyjs-webpack-plugin'
-import Visualizer         from 'webpack-visualizer-plugin'
+import MinifyPlugin from 'uglifyjs-webpack-plugin';
+import Visualizer from 'webpack-visualizer-plugin';
 
-import baseConfiguration  from './webpack.config.client'
+import baseConfiguration from './webpack.config.client';
 
 // With `development: false` all CSS will be extracted into a file
 // named '[name]-[contenthash].css' using `extract-text-webpack-plugin`
 // (this behaviour can be disabled with `cssBundle: false`)
 // (the filename can be customized with `cssBundle: "filename.css"`)
-const configuration = baseConfiguration({ development: false })
+const configuration = baseConfiguration({ development: false });
 
-configuration.devtool = 'source-map'
+configuration.devtool = 'source-map';
 
-configuration.plugins.push
-(
+configuration.plugins.push(
   // clears the output folder
-  new CleanPlugin([path.relative(configuration.context, configuration.output.path)], { root: configuration.context }),
+  new CleanPlugin(
+    [path.relative(configuration.context, configuration.output.path)],
+    { root: configuration.context }
+  ),
 
   // environment variables
-  new webpack.DefinePlugin
-  ({
-    'process.env':
-    {
+  new webpack.DefinePlugin({
+    'process.env': {
       // Useful to reduce the size of client-side libraries, e.g. react
       NODE_ENV: JSON.stringify('production') // 'development' to see non-minified React errors
     },
@@ -36,8 +36,7 @@ configuration.plugins.push
 
   // For production mode
   // https://moduscreate.com/webpack-2-tree-shaking-configuration/
-  new webpack.LoaderOptionsPlugin
-  ({
+  new webpack.LoaderOptionsPlugin({
     minimize: true,
     debug: false
   }),
@@ -46,11 +45,10 @@ configuration.plugins.push
   new MinifyPlugin(),
 
   // https://blog.etleap.com/2017/02/02/inspecting-your-webpack-bundle/
-  new Visualizer
-  ({
+  new Visualizer({
     // Relative to the output folder
     filename: '../bundle-stats.html'
-  }),
-)
+  })
+);
 
-export default configuration
+export default configuration;
