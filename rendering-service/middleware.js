@@ -1,14 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { matchRoutes, renderRoutes } from 'react-router-config';
-import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import StaticRouter from 'react-router-dom/StaticRouter';
 import { createMemoryHistory, createLocation } from 'history';
 import { ConnectedRouter } from 'react-router-redux';
 
 import routes from '../src/routes';
-import reducers from '../src/reducers';
 import configureStore from '../src/store';
 import Html from './Html';
 
@@ -25,12 +22,12 @@ export default function createSSR(assets) {
 
     const branch = matchRoutes(routes, req.url);
     const promises = branch.map(({ route }) => {
-      const fetchData = route.component.fetchData;
+      const { fetchData } = route.component;
       return fetchData instanceof Function
         ? fetchData(store)
         : Promise.resolve(null);
     });
-    return Promise.all(promises).then((data) => {
+    return Promise.all(promises).then(() => {
       const context = {};
       const component = (
         <Provider store={store}>
@@ -54,7 +51,7 @@ export default function createSSR(assets) {
       if (context.status === 302) {
         return res.redirect(302, context.url);
       }
-      res.send(`<!doctype html>\n${content}`);
+      return res.send(`<!doctype html>\n${content}`);
     });
   };
 }

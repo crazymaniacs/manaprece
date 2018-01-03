@@ -1,6 +1,5 @@
 import path from 'path';
 import express from 'express';
-import webpack from 'webpack';
 import favicon from 'serve-favicon';
 
 import configuration from '../configuration';
