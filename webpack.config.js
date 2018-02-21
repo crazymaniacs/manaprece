@@ -44,19 +44,16 @@ module.exports = {
       },
       // Images
       {
-        test: /\.(png|jpg|gif)$/,
+        test: /\.(png|jpg|gif|svg)$/,
         use: [
           {
             loader: 'url-loader',
             options: {
               limit: 10000,
+              name: 'images/[name]__[hash].[ext]',
             },
           },
         ],
-      },
-      {
-        test: /\.svg$/,
-        use: 'file-loader',
       },
     ],
   },
