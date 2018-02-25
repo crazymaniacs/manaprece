@@ -3,7 +3,16 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import fetchCategory from '../queries/fetch_category';
 import { Field, reduxForm } from 'redux-form';
+import TextField from '../components/form/text_field';
+import CheckBoxField from '../components/form/checkbox_field';
 
+function validate(values) {
+  const errors = {};
+  if (!values.name) {
+    errors.name = 'Required';
+  }
+  return errors;
+}
 const CategoryCreateForm = (props) => {
   function saveCategory(values) {
     const parentCategoryId = props.match.params.id;
@@ -27,18 +36,9 @@ const CategoryCreateForm = (props) => {
   return (
     <div>
       <form onSubmit={handleSubmit(saveCategory)}>
-        <div>
-          <label htmlFor="name">name</label>
-          <Field name="name" component="input" type="text" />
-        </div>
-        <div>
-          <label htmlFor="description">description</label>
-          <Field name="description" component="input" type="text" />
-        </div>
-        <div>
-          <label htmlFor="childOnly">child only</label>
-          <Field name="childOnly" component="input" type="checkbox" />
-        </div>
+        <Field name="name" component={TextField} label="Category Name" />
+        <Field name="description" component={TextField} label="Description" />
+        <Field name="childOnly" component={CheckBoxField} label="Child Only" />
         <button type="submit">Create</button>
       </form>
     </div>
@@ -64,4 +64,5 @@ const mutation = gql`
 
 export default reduxForm({
   form: 'category_create',
+  validate,
 })(graphql(mutation)(CategoryCreateForm));
