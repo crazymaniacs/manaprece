@@ -2,14 +2,12 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import fetchCategory from '../queries/fetch_category';
+import { Field, reduxForm } from 'redux-form';
 
-const CategoryCreate = (props) => {
-  const submitForm = (evt) => {
-    evt.preventDefault();
-    const name = document.getElementById('category_name').value;
-    const description = document.getElementById('category_description').value;
-    const childOnly = document.getElementById('category_childOnly').checked;
+const CategoryCreateForm = (props) => {
+  function saveCategory(values) {
     const parentCategoryId = props.match.params.id;
+    const { name, description, childOnly } = values;
 
     props
       .mutate({
@@ -24,28 +22,28 @@ const CategoryCreate = (props) => {
         ],
       })
       .then(() => props.history.goBack());
-  };
+  }
+  const { handleSubmit } = props;
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit(saveCategory)}>
         <div>
-          <label htmlFor="category_name">name</label>
-          <input id="category_name" type="text" />
+          <label htmlFor="name">name</label>
+          <Field name="name" component="input" type="text" />
         </div>
         <div>
-          <label htmlFor="category_name">description</label>
-          <input id="category_description" type="text" />
+          <label htmlFor="description">description</label>
+          <Field name="description" component="input" type="text" />
         </div>
         <div>
-          <label htmlFor="category_name">child only</label>
-          <input id="category_childOnly" type="checkbox" />
+          <label htmlFor="childOnly">child only</label>
+          <Field name="childOnly" component="input" type="checkbox" />
         </div>
-        <button onClick={submitForm}>Create</button>
+        <button type="submit">Create</button>
       </form>
     </div>
   );
 };
-
 const mutation = gql`
   mutation AddCategory(
     $name: String!
@@ -64,4 +62,6 @@ const mutation = gql`
   }
 `;
 
-export default graphql(mutation)(CategoryCreate);
+export default reduxForm({
+  form: 'category_create',
+})(graphql(mutation)(CategoryCreateForm));
