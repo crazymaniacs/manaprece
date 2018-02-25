@@ -2,7 +2,7 @@ import React from 'react';
 
 export default (renderInput) => ({ input, meta, label }) => (
   <div>
-    <label>{label}</label>
+    <label htmlFor={label}>{label}</label>
     {renderInput(input)}
     {meta.error &&
       meta.touched && (

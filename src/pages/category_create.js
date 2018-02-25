@@ -1,8 +1,8 @@
 import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import fetchCategory from '../queries/fetch_category';
 import { Field, reduxForm } from 'redux-form';
+import fetchCategory from '../queries/fetch_category';
 import TextField from '../components/form/text_field';
 import CheckBoxField from '../components/form/checkbox_field';
 
